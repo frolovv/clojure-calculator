@@ -1,11 +1,5 @@
 (ns tokenize.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
-
-
 (defn digit?
   [ch]
   (let [n (- (int ch) 48)]
@@ -24,8 +18,6 @@
         num (read-string joined)
         ]
     (list rest (list :number num))))
-
-(get-digits (seq "123 456"))
 
 (defn tokenize1
   [chars tokens]
