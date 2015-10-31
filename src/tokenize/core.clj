@@ -11,6 +11,12 @@
   (let [n (- (int ch) 48)]
     (and (>= n 0) (<= n 9))))
 
+(defn whitespace?
+  [ch]
+  (let [n (int ch)]
+    (and (>= n 0) (<= n 32))))
+
+
 (defn get-digits
   [chars]
   (let [[digits rest] (split-with digit? chars)
@@ -29,6 +35,7 @@
                 (= ch \-) (tokenize1 rest (conj tokens (list :minus ch)))
                 (= ch \() (tokenize1 rest (conj tokens (list :lparen ch)))
                 (= ch \)) (tokenize1 rest (conj tokens (list :rparen ch)))
+                (whitespace? ch) (tokenize1 rest tokens)
                 (digit? ch) (let [[rest' token] (get-digits chars)]
                               (tokenize1 rest' (conj tokens token)))
                 :else (throw (Exception. (format "unknown char [%s]" ch)))

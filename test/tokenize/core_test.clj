@@ -4,10 +4,18 @@
 
 (deftest digit?-test
   (testing "is digit? test"
-    (is (= true (digit? \1)))
-    (is (= true (digit? \0)))
-    (is (= true (digit? \9)))
-    (is (= false (digit? \a)))))
+    (is (digit? \1))
+    (is (digit? \0))
+    (is (digit? \9))
+    (is (not (digit? \a)))))
+
+(deftest whitespace-test
+  (testing "whitespace?"
+    (is (whitespace? \space))
+    (is (whitespace? \tab))
+    (is (whitespace? \newline))
+
+    ))
 
 (deftest get-digits-test
   (testing "getting chars from char list"
