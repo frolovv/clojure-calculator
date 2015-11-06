@@ -1,4 +1,4 @@
-  (ns tokenize.core)
+(ns tokenize.core)
 
 (defn digit?
   [ch]
@@ -21,18 +21,19 @@
 
 (defn tokenize1
   [chars tokens]
-  (if (empty? chars) tokens
-        (let [[ch & rest] chars]
-          (cond (= ch \+) (tokenize1 rest (conj tokens (list :plus ch)))
-                (= ch \-) (tokenize1 rest (conj tokens (list :minus ch)))
-                (= ch \() (tokenize1 rest (conj tokens (list :lparen ch)))
-                (= ch \)) (tokenize1 rest (conj tokens (list :rparen ch)))
-                (whitespace? ch) (tokenize1 rest tokens)
-                (digit? ch) (let [[rest' token] (get-digits chars)]
-                              (tokenize1 rest' (conj tokens token)))
-                :else (throw (Exception. (format "unknown char [%s]" ch)))
-                )
-    )))
+  (if (empty? chars)
+    tokens
+    (let [[ch & rest] chars]
+      (cond (= ch \+) (tokenize1 rest (conj tokens (list :plus ch)))
+            (= ch \-) (tokenize1 rest (conj tokens (list :minus ch)))
+            (= ch \() (tokenize1 rest (conj tokens (list :lparen ch)))
+            (= ch \)) (tokenize1 rest (conj tokens (list :rparen ch)))
+            (whitespace? ch) (tokenize1 rest tokens)
+            (digit? ch) (let [[rest' token] (get-digits chars)]
+                          (tokenize1 rest' (conj tokens token)))
+            :else (throw (Exception. (format "unknown char [%s]" ch)))
+            )
+      )))
 
 
 (defn tokenize
