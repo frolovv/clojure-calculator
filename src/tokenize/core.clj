@@ -1,4 +1,4 @@
-(ns tokenize.core)
+  (ns tokenize.core)
 
 (defn digit?
   [ch]
