@@ -14,4 +14,16 @@
     )
   )
 
+(deftest parse-unparse-test
+  (let [parse-unparse (fn [str] (= (unparse (parse str)) str))]
+
+    (testing "using unparse function"
+      (is (parse-unparse "123"))
+      (is (parse-unparse "123 456"))
+      (is (parse-unparse "(123)"))
+      (is (parse-unparse "(+ 1 2 3)"))
+
+      )))
+
+
 (run-tests)

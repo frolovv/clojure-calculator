@@ -1,4 +1,5 @@
 (ns tokenize.core)
+(use '[clojure.string :only (join split)])
 
 
 (defn parse1
@@ -37,3 +38,12 @@
   (parse-many (tokenize (seq str))
               (fn [exprs tokens] (if (empty? tokens) exprs (throw (Exception. (format "got extra tokens %s" tokens)))))
               (fn [] 123)))
+
+(defn unparse1
+  [expr]
+  (cond (vector? expr) (let [[_ value] expr] (format "%s" value))
+        (list? expr) (format "(%s)" (unparse expr))))
+
+(defn unparse
+  [exprs]
+  (join " " (map unparse1 exprs)))
