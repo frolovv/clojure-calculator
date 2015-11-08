@@ -1,4 +1,7 @@
-(ns tokenize.core)
+(ns calc.tokenize)
+(use '[clojure.string :only (join split)])
+
+(declare tokenize)
 
 (defn digit?
   [ch]
@@ -9,7 +12,6 @@
   [ch]
   (let [n (int ch)]
     (and (>= n 0) (<= n 32))))
-
 
 (defn get-digits
   [chars]
@@ -39,16 +41,3 @@
 (defn tokenize
   [str]
   (tokenize1 (seq str) (vector)))
-
-
-
-
-
-
-
-
-
-
-
-
-

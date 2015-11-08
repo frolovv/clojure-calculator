@@ -1,6 +1,11 @@
-(ns tokenize.core)
+(ns calc.parse
+  (:require [calc.tokenize :refer :all]))
+
 (use '[clojure.string :only (join split)])
 
+(declare parse-many)
+(declare parse1)
+(declare unparse)
 
 (defn parse1
   [tokens succ fail]
@@ -37,7 +42,7 @@
   [str]
   (parse-many (tokenize (seq str))
               (fn [exprs tokens] (if (empty? tokens) exprs (throw (Exception. (format "got extra tokens %s" tokens)))))
-              (fn [] 123)))
+              (fn [] (throw (Exception. (format "failed to parse %s" str))))))
 
 (defn unparse1
   [expr]

@@ -1,6 +1,6 @@
-(ns tokenize.core-test
+(ns calc.tokenize-test
   (:require [clojure.test :refer :all]
-            [tokenize.core :refer :all]))
+            [calc.tokenize :refer :all]))
 
 (deftest digit?-test
   (testing "is digit? test"
@@ -36,4 +36,4 @@
   (testing "tokenizing multi-token words"
     (is (= (vector '(:lparen \() '(:plus \+) '(:number 1) '(:rparen \))) (tokenize "(+ 1)")))
 
-  ))
+    ))

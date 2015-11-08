@@ -1,6 +1,6 @@
-(ns tokenize.core-test
+(ns calc.parse-test
   (:require [clojure.test :refer :all]
-            [tokenize.core :refer :all]))
+            [calc.parse :refer :all]))
 
 (deftest parse-test
   (testing "parsing numbers"
@@ -11,6 +11,7 @@
 
   (testing "parsing expressions"
     (is (= (parse "(123 4 5 6)") [(list [:number 123] [:number 4] [:number 5] [:number 6])]))
+    (is (thrown? Exception (parse "()")))
     )
   )
 
