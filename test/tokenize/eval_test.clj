@@ -4,7 +4,12 @@
 
 (deftest eval-test
   (testing "basic eval cases"
-    (is (= (eval "123") 123))
-    (is (= (eval "(+ 1)") 1))
-    (is (= (eval "(+ 1 2 3)") 6))
-    ))
+    (is (= (my-eval "123") 123))
+    (is (= (my-eval "(+ 1)") 1))
+    (is (= (my-eval "(+ 1 2 3)") 6))
+    )
+
+  (testing "more complex expressions"
+    (is (= (my-eval "(+ (+ 1 2 3) 0)") 6))
+    )
+  )

@@ -12,6 +12,10 @@
                            numbers (map eval1 args)]
                        (reduce (operator operations) 0 numbers))))
 
-(defn eval
+(defn my-eval
   [str]
-  (map eval1 (parse str)))
+  (let [exprs (parse str)
+        results (map eval1 exprs)]
+    (if (= (count results) 1)
+      (first results)
+      results)))
