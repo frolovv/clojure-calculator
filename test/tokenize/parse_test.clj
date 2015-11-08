@@ -24,6 +24,3 @@
       (is (parse-unparse "(+ 1 2 3)"))
 
       )))
-
-
-(run-tests)

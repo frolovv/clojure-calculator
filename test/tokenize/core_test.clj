@@ -37,5 +37,3 @@
     (is (= (vector '(:lparen \() '(:plus \+) '(:number 1) '(:rparen \))) (tokenize "(+ 1)")))
 
   ))
-
-(run-tests)
