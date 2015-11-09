@@ -16,8 +16,12 @@
     (is (= (my-eval "(+ (+ 1 2 3) 0)") 6))
     )
   )
-(deftest bad-expressions
-  (testing "bad expressions"
-    (is (thrown? Exception (my-eval "+++")))
-    )
-  )
+
+(deftest high-nesting
+  (letfn [(gen [n] (reduce #(format "(+ %s %s)" %2 %1) "0" (range n) ))]
+
+    (testing "nested expressions"
+      (is (= (my-eval (gen 5)) 10))
+      (is (= (my-eval (gen 10)) 45))
+      (is (= (my-eval (gen 100)) 4950))
+      )))
